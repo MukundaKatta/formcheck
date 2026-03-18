@@ -1,72 +1,43 @@
-# FormCheck - AI Personal Trainer
+# formcheck
 
-FormCheck is an AI-powered personal trainer that uses pose estimation and form
-analysis to provide real-time exercise correction feedback.
+**FormCheck — AI Personal Trainer. Real-time exercise form correction using pose estimation.**
 
-## Features
+![Build](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-proprietary-red)
 
-- **Pose Detection**: CNN-based detector extracting 17 body keypoints from video
-  frames.
-- **Form Analysis**: Computes joint angles and compares them against reference
-  form for 20+ exercises.
-- **Correction Engine**: Identifies specific corrections and provides actionable
-  cues.
-- **Rep Counting**: Automatically counts repetitions by detecting joint-angle
-  cycles.
-- **Workout Tracking**: Logs sets, reps, and per-rep form scores.
-- **Reports**: Generates rich console reports summarising workout quality.
-
-## Supported Exercises
-
-Squat, Front Squat, Deadlift, Romanian Deadlift, Bench Press, Overhead Press,
-Barbell Row, Push-up, Pull-up, Dip, Plank, Side Plank, Lunge, Bulgarian Split
-Squat, Hip Thrust, Bicep Curl, Tricep Extension, Lateral Raise, Face Pull,
-Calf Raise, Leg Press, and Leg Curl.
-
-## Installation
-
-```bash
-pip install -e .
-```
-
-## Usage
-
-```bash
-# Analyse a workout video
-formcheck analyse --video workout.mp4 --exercise squat
-
-# Run a simulated workout and generate a report
-formcheck simulate --exercise deadlift --reps 8
-
-# List supported exercises
-formcheck exercises
-```
-
-## Development
-
+## Install
 ```bash
 pip install -e ".[dev]"
-pytest
 ```
 
-## Architecture
-
+## Quick Start
+```python
+from src.core import Formcheck
+ instance = Formcheck()
+r = instance.learn(input="test")
 ```
-src/formcheck/
-  cli.py            - Click CLI entry-point
-  models.py         - Pydantic data models
-  simulator.py      - Synthetic pose data generator
-  report.py         - Rich console reporter
-  pose/
-    detector.py     - PoseDetector CNN (17 keypoints)
-    analyzer.py     - FormAnalyzer (joint angles & comparison)
-    corrector.py    - FormCorrector (correction identification)
-  exercises/
-    database.py     - ExerciseDatabase (20+ exercises w/ angles)
-    rep_counter.py  - RepCounter (cycle detection)
-    workout.py      - WorkoutTracker (sets/reps/scores)
+
+## CLI
+```bash
+python -m src status
+python -m src run --input "data"
+```
+
+## API
+| Method | Description |
+|--------|-------------|
+| `learn()` | Learn |
+| `assess()` | Assess |
+| `recommend()` | Recommend |
+| `track_progress()` | Track progress |
+| `generate_exercise()` | Generate exercise |
+| `certify()` | Certify |
+| `get_stats()` | Get stats |
+| `reset()` | Reset |
+
+## Test
+```bash
+pytest tests/ -v
 ```
 
 ## License
-
-MIT
+(c) 2026 Officethree Technologies. All Rights Reserved.
